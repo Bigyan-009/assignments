@@ -1,0 +1,19 @@
+.projects a {
+  text-decoration: none;
+}
+body {
+  background-color: aquamarine;
+}
+.header {
+  text-align: center;
+}
+.container {
+  font-weight: bold;
+}
+h1,
+a {
+  color: black;
+}
+.projects {
+  font-size: 25px;
+}
