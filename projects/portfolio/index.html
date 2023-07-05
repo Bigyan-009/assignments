@@ -19,13 +19,17 @@
   <body>
     <header>
       <nav>
-        <div class="left">Bigyan's portfolio</div>
+        <div class="left">
+          Bigyan's portfolio
+          <i class="fa-solid fa-bars" onclick="openmenu()"></i>
+        </div>
         <div class="right">
-          <ul>
+          <ul id="sidemenu">
             <a href="#home"><li>HOME</li></a>
             <a href="#about"><li>ABOUT</li></a>
             <a href="#project"><li>PROJECTS</li></a>
             <a href="#contact"><li>CONTACT</li></a>
+            <i class="fa-solid fa-square-xmark" onclick="closemenu()"></i>
           </ul>
         </div>
       </nav>
@@ -67,7 +71,7 @@
         <h1 class="about-title"><span class="name-color">About Me</span></h1>
         <p class="about-description">
           "Hi there! I'm Bigyan Dahal, a web development enthusiast currently
-          studying for a Bachelor's degree in Computer Applications at Damak
+          studying a Bachelor's degree in Computer Applications at Damak
           Multiple Campus. With a focus on Node.js, JavaScript, HTML, and CSS,
           I'm on a quest to master the art of creating captivating websites. As
           a fresh talent in the field, I'm eager to collaborate on exciting
@@ -168,22 +172,51 @@
           </div>
         </div>
         <div class="contact-right">
-          <form action="">
-            <input type="text" name="" id="" placeholder="Your name" />
-            <input type="email" name="" id="" placeholder="Your email" />
-            <input type="password" name="" id="" placeholder="Your password" />
+          <form name="submit-to-google-sheet">
+            <input type="text" name="Name" id="" placeholder="Your name" />
+            <input type="email" name="Email" id="" placeholder="Your email" />
+
             <textarea
-              name=""
+              name="message"
               id=""
               cols="10"
               rows="5"
               placeholder="your message"
             ></textarea>
-            <button class="submit" type="submit">Submit</button>
+            <button class="submit" type="submit">submit</button>
           </form>
+          <span id="msg"> </span>
         </div>
       </div>
     </section>
     <div class="copyright">copyright © Bigyan</div>
+    <script>
+      let sidemenu = document.getElementById("sidemenu");
+      function openmenu() {
+        sidemenu.style.right = "0";
+      }
+      function closemenu() {
+        sidemenu.style.right = "-300px";
+      }
+    </script>
+    <script>
+      const scriptURL =
+        "https://script.google.com/macros/s/AKfycbxZMT_WqhA3XylrblYtXdqAJ_Uv0srX6XgfYKfdrTEMfmnYPLyB_J2WmoIvpjpAAGoX3A/exec";
+      const form = document.forms["submit-to-google-sheet"];
+      const msg = document.getElementById("msg");
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        fetch(scriptURL, { method: "POST", body: new FormData(form) })
+          .then((response) => {
+            msg.innerHTML = "Message sent sucessfully!";
+            setTimeout(function () {
+              msg.innerHTML = "";
+            }, 5000);
+            form.reset();
+          })
+          .catch((error) => console.error("Error!", error.message));
+      });
+    </script>
   </body>
 </html>

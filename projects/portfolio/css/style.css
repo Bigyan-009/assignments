@@ -14,17 +14,13 @@ body {
 nav {
   display: flex;
   justify-content: space-around;
-  height: 60px;
+  height: 100%;
   align-items: center;
   background-color: rgb(16, 16, 67);
-  /* position: fixed; */
-  top: 0;
-  left: 0;
-  width: 100%;
 
-  top: 0;
-  z-index: 100;
+  width: 100%;
 }
+
 nav ul {
   display: flex;
 }
@@ -243,4 +239,57 @@ input:focus {
 textarea:focus {
   outline: 2px solid white;
   font-size: 20px;
+}
+
+#msg {
+  color: #61b752;
+  margin-top: 10px;
+  display: block;
+  font-size: 20px;
+}
+
+/* css for small screen */
+nav .fa-solid {
+  display: none;
+}
+/*  responsive design */
+@media only screen and (max-width: 971px) {
+  nav,
+  ul {
+    flex-direction: column;
+  }
+  nav {
+    background-color: rgb(12, 12, 35);
+  }
+  nav .fa-solid {
+    display: block;
+    font-size: 20px;
+    margin-top: 10px;
+  }
+  .left {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+  }
+  nav ul {
+    background-color: rgb(139 69 204);
+    position: fixed;
+    top: 0;
+    right: -300px;
+    width: 300px;
+    height: 100vh;
+    padding-top: 50px;
+    z-index: 2;
+    transition: right 0.5s;
+  }
+  nav ul li {
+    display: block;
+    margin: 25px;
+  }
+  nav ul .fa-square-xmark {
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    cursor: pointer;
+  }
 }
